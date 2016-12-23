@@ -1,7 +1,16 @@
 (ns letters.views
-    (:require [re-frame.core :as re-frame]))
+  (:require [re-frame.core :as re-frame]))
 
 (defn main-panel []
-  (let [name (re-frame/subscribe [:name])]
+  (let [count (re-frame/subscribe [:count])]
     (fn []
-      [:div "Hello from " @name])))
+      [:div
+       [:input {:value (str "happy " @count)}]
+       [:button {:on-click #(re-frame/dispatch [:increment])} "increment"]
+       [:button {:on-click #(re-frame/dispatch [:reset])} "reset"]
+       ])))
+
+;[:input {:value (str "Hi from " @name) :on-change #(re-frame/dispatch [:increment
+;                                                                       nil
+;                                                                       ;(-> % .-target .-value)
+;                                                                       ])}])))
