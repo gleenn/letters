@@ -11,3 +11,8 @@
  :count
  (fn [db]
    (:count db)))
+
+(re-frame/reg-sub
+ :total
+ (fn [db]
+   (reduce + (vals (:count db)))))

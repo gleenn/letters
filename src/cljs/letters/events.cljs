@@ -10,9 +10,9 @@
 (re-frame/reg-event-db
   :increment
   (fn [db event]
-      (update-in db [:count] inc)))
+        (update-in db [:count (second event)] inc)))
 
 (re-frame/reg-event-db
   :reset
   (fn [db event]
-      (assoc db :count 0)))
+      (assoc db :count (:count db/default-db))))
