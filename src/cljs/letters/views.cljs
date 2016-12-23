@@ -6,11 +6,14 @@
     (fn []
       [:div
        [:div "Game total: " @total]
+       [:br]
        [:div
         [:input {:value (str "left " (:left @count))}]
         [:button {:on-click #(re-frame/dispatch [:increment :left])} "increment left"]
         [:input {:value (str "right " (:right @count))}]
         [:button {:on-click #(re-frame/dispatch [:increment :right])} "increment right"]
-        [:button {:on-click #(re-frame/dispatch [:reset])} "reset"]
         ]
+       [:br]
+       [:div
+        [:button {:on-click #(re-frame/dispatch [:reset])} "reset"]]
        ])))
