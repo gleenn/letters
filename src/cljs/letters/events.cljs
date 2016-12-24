@@ -22,7 +22,11 @@
   (fn [db event]
     (let [left (-> db :count :left)
           right (-> db :count :right)]
-      (do (.log js/console left right)
-          (-> db
-           (update-in [:count :right] (fn [_] left))
-           (update-in [:count :left] (fn [_] right)))))))
+      (-> db
+          (update-in [:count :right] (fn [_] left))
+          (update-in [:count :left] (fn [_] right))))))
+
+(re-frame/reg-event-db
+  :recurse
+  (fn [db event]
+    (re-frame/dispatch [:reset])))
