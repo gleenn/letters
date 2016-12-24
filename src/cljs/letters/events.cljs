@@ -1,6 +1,8 @@
 (ns letters.events
-    (:require [re-frame.core :as re-frame]
-              [letters.db :as db]))
+  (:require [re-frame.core :as re-frame]
+            [day8.re-frame.http-fx]
+            [letters.db :as db]
+            [ajax.core :as ajax]))
 
 (re-frame/reg-event-db
  :initialize-db
@@ -35,3 +37,14 @@
   :goto-page
   (fn [db event]
     (assoc db :page-number (second event))))
+
+(re-frame/reg-event-fx                             ;; note the trailing -fx
+  :handler-with-http                      ;; usage:  (dispatch [:handler-with-http])
+  (fn [{:keys [db]} _]                    ;; the first param will be "world"
+    {:db         (assoc db :show-twirly true)   ;; causes the twirly-waiting-dialog to show??
+     :http-xhrio {:method          :get
+                  :uri             "https://api.github.com/orgs/day8"
+                  :timeout         8000                                           ;; optional see API docs
+                  :response-format (ajax/json-response-format {:keywords? true})  ;; IMPORTANT!: You must provide this.
+                  :on-success      [:good-http-result]
+                  :on-failure      [:bad-http-result]}}))
