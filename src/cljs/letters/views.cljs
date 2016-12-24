@@ -1,24 +1,36 @@
 (ns letters.views
   (:require [re-frame.core :as re-frame]))
 
-(defn button [event title]
-  [:button {:on-click #(re-frame/dispatch event)} title])
+(def last-id (atom 10000))
+
+(defn id-sequence []
+  (swap! last-id inc))
+
+(defn button [event title & opts]
+  [:button
+   (merge {:on-click #(re-frame/dispatch event) :key (id-sequence)} (first opts)) title])
 
 (defn main-panel []
   (let [count (re-frame/subscribe [:count])
-        total (re-frame/subscribe [:total])]
+        total (re-frame/subscribe [:total])
+        page-number (re-frame/subscribe [:page-number])]
     (fn []
       [:div
        [:div "Game total: " @total]
        [:br]
        [:div
-        [:input {:value (str "left " (:left @count))}]
+        [:input {:value (str "left " (:left @count)) :readOnly true}]
         (button [:increment :left] "Increment Left")
-        [:input {:value (str "right " (:right @count))}]
+        [:input {:value (str "right " (:right @count)) :readOnly true}]
         (button [:increment :right] "Increment Right")
         ]
        [:br]
-       [:div (button [:reset] "Reset")]
-       [:div (button [:reverse] "Reverse")]
-       [:div (button [:recurse] "Recurse")]
+       (condp = @page-number
+         1 [:div (button [:reset] "Reset")]
+         2 [:div (button [:reverse] "Reverse")]
+         3 [:div (button [:recurse] "Recurse")]
+         [:div (button [:reset] "Reset")])
+       [:div
+        (doall (for [i (range 1 4)]
+                 (button [:goto-page i] i (when (= @page-number i) {:className "selected"}))))]
        ])))

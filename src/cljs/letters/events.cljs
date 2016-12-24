@@ -30,3 +30,8 @@
   :recurse
   (fn [db event]
     (re-frame/dispatch [:reset])))
+
+(re-frame/reg-event-db
+  :goto-page
+  (fn [db event]
+    (assoc db :page-number (second event))))

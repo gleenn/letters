@@ -13,6 +13,11 @@
    (:count db)))
 
 (re-frame/reg-sub
+ :page-number
+ (fn [db]
+   (:page-number db)))
+
+(re-frame/reg-sub
  :total
  (fn [db]
    (reduce + (vals (:count db)))))
