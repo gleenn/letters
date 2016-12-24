@@ -17,6 +17,6 @@
         (button [:increment :right] "Increment Right")
         ]
        [:br]
-       [:div
-        (button [:reset] "Reset")]
+       [:div (button [:reset] "Reset")]
+       [:div (button [:reverse] "Reverse")]
        ])))

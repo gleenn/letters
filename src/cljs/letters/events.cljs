@@ -16,3 +16,13 @@
   :reset
   (fn [db event]
       (assoc db :count (:count db/default-db))))
+
+(re-frame/reg-event-db
+  :reverse
+  (fn [db event]
+    (let [left (-> db :count :left)
+          right (-> db :count :right)]
+      (do (.log js/console left right)
+          (-> db
+           (update-in [:count :right] (fn [_] left))
+           (update-in [:count :left] (fn [_] right)))))))
