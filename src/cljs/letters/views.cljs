@@ -13,9 +13,12 @@
 (defn main-panel []
   (let [count (re-frame/subscribe [:count])
         total (re-frame/subscribe [:total])
-        page-number (re-frame/subscribe [:page-number])]
+        page-number (re-frame/subscribe [:page-number])
+        random (re-frame/subscribe [:random])]
     (fn []
       [:div
+       [:div "This is a random number " @random]
+       (button [:gimme-data] "Gimme a new random")
        [:div "Game total: " @total]
        [:br]
        [:div

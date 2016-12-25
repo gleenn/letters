@@ -1,10 +1,10 @@
 (ns letters.core
-    (:require [reagent.core :as reagent]
-              [re-frame.core :as re-frame]
-              [letters.events]
-              [letters.subs]
-              [letters.views :as views]
-              [letters.config :as config]))
+  (:require [reagent.core :as reagent]
+            [re-frame.core :as re-frame]
+            [letters.events]
+            [letters.subs]
+            [letters.views :as views]
+            [letters.config :as config]))
 
 
 (defn dev-setup []

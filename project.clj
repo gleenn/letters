@@ -3,7 +3,12 @@
                  [org.clojure/clojurescript "1.9.229"]
                  [reagent "0.6.0"]
                  [re-frame "0.9.1"]
-                 [day8.re-frame/http-fx "0.1.3"]]
+                 [day8.re-frame/http-fx "0.1.3"]
+                 [figwheel-sidecar "0.5.0"]
+                 [compojure "1.5.1"]
+                 [org.clojure/data.json "0.2.6"]]
+
+  :main letters.core
 
   :plugins [[lein-cljsbuild "1.1.4"]]
 
@@ -13,7 +18,10 @@
 
   :clean-targets ^{:protect false} ["resources/public/js/compiled" "target"]
 
-  :figwheel {:css-dirs ["resources/public/css"]}
+  :figwheel {
+             :css-dirs     ["resources/public/css"]
+             :ring-handler letters.server/handler
+             }
 
   :profiles
   {:dev
