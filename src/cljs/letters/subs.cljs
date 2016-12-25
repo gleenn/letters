@@ -26,3 +26,8 @@
   :random
   (fn [db]
     (-> db :gimme-data :random)))
+
+(re-frame/reg-sub
+  :hello
+  (fn [db]
+    (-> db :gimme-data :hello)))
