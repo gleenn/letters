@@ -1,0 +1,3 @@
+#!/bin/sh
+
+DATABASE_URL=jdbc:postgresql://glenn@localhost:5432/letters_dev lein migratus
