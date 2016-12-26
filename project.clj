@@ -28,9 +28,10 @@
 
   :profiles
   {:dev
-   {:dependencies [[binaryage/devtools "0.8.2"]]
-
-    :plugins      [[lein-figwheel "0.5.7"]]
+   {:dependencies [[binaryage/devtools "0.8.2"]
+                   [midje "1.6.0" :exclusions [org.clojure/clojure]]]
+    :plugins      [[lein-figwheel "0.5.7"]
+                   [lein-midje "3.2.1"]]
     }}
 
   :cljsbuild
