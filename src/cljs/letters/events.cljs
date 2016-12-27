@@ -53,7 +53,7 @@
 (re-frame/reg-event-db
   :gimme-data-success
   (fn [db event]
-    (do (.log js/console (str event)) (assoc db :gimme-data (second event)))))
+      (assoc db :gimme-data (second event))))
 
 (re-frame/reg-event-db
   :gimme-data-failure

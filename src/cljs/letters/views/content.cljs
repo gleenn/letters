@@ -1,4 +1,4 @@
-(ns letters.views
+(ns letters.views.content
   (:require [re-frame.core :as re-frame]))
 
 (def last-id (atom 10000))
@@ -10,7 +10,7 @@
   [:button
    (merge {:on-click #(re-frame/dispatch event) :key (id-sequence)} (first opts)) title])
 
-(defn main-panel []
+(defn render []
   (let [count (re-frame/subscribe [:count])
         total (re-frame/subscribe [:total])
         page-number (re-frame/subscribe [:page-number])

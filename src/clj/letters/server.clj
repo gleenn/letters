@@ -14,13 +14,14 @@
            (GET "/users" [] (json/write-str (user/all)))
            (route/not-found "<h1>Page not found</h1>"))
 
-(defn wrap-logging [app]
-  (fn [request]
-    (do (println (str request))
-        (app request))))
+;(defn wrap-logging [app]
+;  (fn [request]
+;    (do (println (str request))
+;        (app request))))
 
 (def app
   (-> #'handler
       (wrap-reload '[letter.server])
       (wrap-stacktrace)
-      (wrap-logging)))
+      ;(wrap-logging)
+      ))

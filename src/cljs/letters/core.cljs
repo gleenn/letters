@@ -3,7 +3,7 @@
             [re-frame.core :as re-frame]
             [letters.events]
             [letters.subs]
-            [letters.views :as views]
+            [letters.views.main-panel :as main-panel]
             [letters.config :as config]))
 
 
@@ -14,7 +14,7 @@
 
 (defn mount-root []
   (re-frame/clear-subscription-cache!)
-  (reagent/render [views/main-panel]
+  (reagent/render [main-panel/render]
                   (.getElementById js/document "app")))
 
 (defn ^:export init []

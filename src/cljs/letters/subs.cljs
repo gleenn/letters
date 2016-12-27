@@ -31,3 +31,8 @@
   :hello
   (fn [db]
     (-> db :gimme-data :hello)))
+
+(re-frame/reg-sub
+  :logged-in
+  (fn [db]
+    (:logged-in db)))
