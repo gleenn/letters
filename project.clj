@@ -28,9 +28,9 @@
             [migratus-lein "0.4.2"]]
 
 
-  :migratus {:store :database
+  :migratus {:store         :database
              :migration-dir "migrations"
-             :db ~(get (System/getenv) "DATABASE_URL")}
+             :db            ~(get (System/getenv) "DATABASE_URL")}
 
   :min-lein-version "2.5.3"
 
