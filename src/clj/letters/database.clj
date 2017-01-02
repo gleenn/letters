@@ -5,5 +5,7 @@
 
 (defdb db (postgres {:db       "letters_dev"
                      :user     "postgres"
+                     :page-number "tree"
+                     :counter-page-number 1
                      ;:password ""
                      }))

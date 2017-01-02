@@ -38,6 +38,11 @@
   (fn [db event]
     (assoc db :page-number (second event))))
 
+(re-frame/reg-event-db
+  :goto-counter-page
+  (fn [db event]
+    (assoc db :counter-page-number (second event))))
+
 (re-frame/reg-event-fx                                      ;; note the trailing -fx
   ;:handler-with-http                                       ;; usage:  (dispatch [:handler-with-http])
   :gimme-data                                               ;; usage:  (dispatch [:handler-with-http])
