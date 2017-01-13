@@ -2,17 +2,17 @@
   (:require [midje.sweet :refer :all]
             [letters.tree :refer :all]))
 
-(fact node
-      (node 1 2) => (node 1 2))
+(fact branch
+      (branch 1 2) => (branch 1 2))
 
 (fact count-left-tree
       (count-left-tree []) => nil
       (count-left-tree [['a 1]]) => (leaf 'a 1)
-      (count-left-tree [['a 1] ['b 2]]) => (node (leaf 'a 1) (leaf 'b 2))
-      (count-left-tree [['m 1] ['n 2] ['o 3] ['p 4]]) => (node
-                                                           (node
+      (count-left-tree [['a 1] ['b 2]]) => (branch (leaf 'a 1) (leaf 'b 2))
+      (count-left-tree [['m 1] ['n 2] ['o 3] ['p 4]]) => (branch
+                                                           (branch
                                                              (leaf 'm 1) (leaf 'n 2))
-                                                           (node
+                                                           (branch
                                                              (leaf 'o 3) (leaf 'p 4)))
       ;(count-left-tree [1 2 3 4 5 6 7 8]) => [[[1 2] [3 4]] [[5 6] [7 8]]]
       )
